@@ -1,0 +1,18 @@
+clear
+clc
+close all;
+img= imread("xray.png");
+figure,imshow(img,[]);
+
+imghsv = rgb2hsv(img);
+img_v = imghsv(:,:,3);
+w = fspecial('log', [5 5], 0.4);
+img_vr = filter(img_v, w, 5);
+imghsv(:,:,3) = img_vr;
+% max(imghsv,[],'all')
+% imghsv(:,:,3) = normalize(imghsv(:,:,3), 'range');
+% imghsv(:,:,3) = normalize(imghsv(:,:,3), 'range');
+img = hsv2rgb(imghsv);
+
+figure,imshow(img,[]);
+
